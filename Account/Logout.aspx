@@ -9,15 +9,27 @@
         <title>安全退出</title>
         <link rel="stylesheet" href="/Content/StyleSheet.css" />
         <link rel="stylesheet" href="/Content/bootstrap.min.css" />
-        <script src="/Scripts/jquery-1.8.2.min"></script>
-        <script src="/Scripts/bootstrap.min.js"></script>
+        <style type="text/css">
+            h1{font-size:14pt; margin:0; padding:0}
+            .loginDiv{max-width:300px; margin-left:auto;margin-right:auto; margin-top:20px}
+        </style>
     </head>
     <body>
         <div class="container">
-            <div class="alert alert-success" role="alert">您已安全退出</div>
-            <div><a class="btn btn-primary" href="/">返回</a></div>
+            <div class="panel panel-primary loginDiv">
+                <div class="panel-heading"><h1>退出登录</h1></div>
+                <div class="panel-body">
+                     
+                    <div class="alert alert-success" role="alert">您已安全退出</div>
+                    <div><a class="btn btn-primary" href="/">返回</a></div>
+                </div>
+            </div>
+            
+            
         </div>
     </body>
+    <script src="/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
 </html>
 <script runat="server">
     protected void page_load()

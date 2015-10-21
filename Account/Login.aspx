@@ -4,7 +4,12 @@
 <%
     string strMSG = "";
     string username = "";
-
+    string _domain = System.Configuration.ConfigurationManager.AppSettings["domain"];
+    string showdomain = "";
+    if(_domain != "")
+    {
+        showdomain = "hideblock";
+    }
     string dangerStr = "<div class=\"alert alert-danger\" role=\"alert\">{0}</div>";
     if(Request["act"] == "login")
     {
@@ -22,6 +27,11 @@
         }
         else
         {
+            if(_domain == "")
+            {
+                System.Configuration.ConfigurationManager.AppSettings["domain"] = Request["domain"];
+            }
+            
             LdapAuthentication adAuth = new LdapAuthentication();
             try
             {
@@ -60,9 +70,8 @@
         <style type="text/css">
             h1{font-size:14pt; margin:0; padding:0}
             .loginDiv{max-width:300px; margin-left:auto;margin-right:auto; margin-top:20px}
+            .hideblock {display:none   }
         </style>
-        <script src="/Scripts/jquery-1.8.2.min"></script>
-        <script src="/Scripts/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -73,6 +82,10 @@
                         <div class="form-group">
                             <label for="username">用户名:</label> 
                             <input type="text"  class="form-control"  id="username" name="username"  value="<%=username %>"/>
+                        </div>
+                        <div class="form-group <%=showdomain %>">
+                            <label for="domain">域:</label> 
+                            <input type="text"  class="form-control"  id="domain" name="domain"  value="<%=_domain %>"/>
                         </div>
                         <div class="form-group">
                             <label>密码:</label>
@@ -87,5 +100,7 @@
                 </div>
             </div>
         </div>
+        <script src="/Scripts/jquery-1.11.3.min.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
     </body>
 </html>

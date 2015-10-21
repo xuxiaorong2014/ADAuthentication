@@ -12,7 +12,8 @@
         string password = Request["password"];
         string newPassword = Request["newPassword"];
         string newPassword1 = Request["newPassword1"];
-        using (DirectoryEntry entry = new DirectoryEntry("LDAP://redpod.com.cn", username, password))
+		string _domain = System.Configuration.ConfigurationManager.AppSettings["domain"];
+        using (DirectoryEntry entry = new DirectoryEntry("LDAP://" + _domain, username, password))
         {
             try
             {
@@ -42,8 +43,6 @@
             h1{font-size:14pt; margin:0; padding:0}
             .loginDiv{max-width:300px; margin-left:auto;margin-right:auto; margin-top:20px}
         </style>
-        <script src="/Scripts/jquery-1.8.2.min"></script>
-        <script src="/Scripts/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -70,5 +69,7 @@
                 <p><%=msgStr %></p>
             </div>
         </div>
+        <script src="/Scripts/jquery-1.11.3.min.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
     </body>
 </html>
